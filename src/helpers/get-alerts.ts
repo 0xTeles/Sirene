@@ -1,12 +1,12 @@
 import { graphql } from "@octokit/graphql";
 import { Repository } from "@octokit/graphql-schema";
 import { Env
- } from "./env";
-export const getAlert = async (): Promise<any> => {
+ } from "../env";
+export const getAlert = async (repo_owner: string, repo_name: string): Promise<any> => {
   const { repository } = await graphql<{ repository: Repository }>(
   `
   {
-    repository(owner:"${Env.github_repository_owner}" name:"${Env.github_repository_name}") {
+    repository(owner:"${repo_owner}" name:"${repo_name}") {
       vulnerabilityAlerts(last: 10) {
         edges {
           node {
