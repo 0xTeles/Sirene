@@ -1,7 +1,8 @@
 import axios from "axios";
 import { Output } from "./types";
+import { Env } from "./env";
 
-export const SendAlert = async(webhook: string, alert: Output) => {
+export const SendAlert = async(alert: Output) => {
         const message = `
         Repository: ${alert.Repository}
         Package: ${alert.Package}
@@ -18,7 +19,7 @@ export const SendAlert = async(webhook: string, alert: Output) => {
         }
         const request = {
         method: 'post',
-        url: webhook,
+        url: Env.webhook,
         headers: {
             'Content-Type': 'application/json'
         },
