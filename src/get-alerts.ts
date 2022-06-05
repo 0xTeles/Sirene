@@ -6,7 +6,7 @@ export const getAlert = async (): Promise<any> => {
   const { repository } = await graphql<{ repository: Repository }>(
   `
   {
-    repository(owner:"0xteles" name:"cwchallenge") {
+    repository(owner:"${Env.github_repository_owner}" name:"${Env.github_repository_name}") {
       vulnerabilityAlerts(last: 10) {
         edges {
           node {
