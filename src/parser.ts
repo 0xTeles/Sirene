@@ -2,7 +2,7 @@
 import { Schema } from "./types"
 import { Output } from "./types"
 
-export const Parser = (y: any) => {
+export const Parser = (y: Schema) => {
     //console.log(JSON.stringify(y.securityVulnerability.package))
     const o: Output = {
         Repository: y.node.repository.name,
