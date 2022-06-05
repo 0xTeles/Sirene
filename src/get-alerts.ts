@@ -57,6 +57,9 @@ export const getAlert = async (): Promise<any> => {
     },
   }
 )
-return (JSON.stringify(repository.vulnerabilityAlerts?.edges))
+if (JSON.stringify(repository.vulnerabilityAlerts?.edges) !== ""){
+  return (JSON.stringify(repository.vulnerabilityAlerts?.edges))
+
+}
 }
 
