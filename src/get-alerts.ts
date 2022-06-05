@@ -1,6 +1,7 @@
 import { graphql } from "@octokit/graphql";
 import { Repository } from "@octokit/graphql-schema";
-
+import { Env
+ } from "./env";
 export const getAlert = async (): Promise<any> => {
   const { repository } = await graphql<{ repository: Repository }>(
   `
@@ -52,7 +53,7 @@ export const getAlert = async (): Promise<any> => {
   `,
   {
     headers: {
-      authorization: `token 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`,
+      authorization: `token ${Env.github_token}`,
     },
   }
 )
