@@ -1,21 +1,19 @@
-name: GitHub Actions Demo
-on: [push]
+name: 'Dependabot Alert'
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
 env:
-   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+  TOKEN:  ${{ secrets.TOKEN }}
+  WEBHOOK:  ${{ secrets.WEBHOOK }}
+
 jobs:
-  Dependabot-to-Discord:
+  main:
     runs-on: ubuntu-latest
     steps:
       - run: echo ::set-env name=REPOSITORY_NAME::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}' | sed -e "s/:refs//")
       - run: echo ::set-env name=REPOSITORY_OWNER::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $1}')
       - run: echo "$REPOSITORY_OWNER"
       - run: echo "$REPOSITORY_NAME"
-      - uses: actions/checkout@v2
-      - name: Setup node 16
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16.x
-      - name: Run Dependabot
-          run: node build/index.js
-
-
+      - uses: 0xteles/GetDependaBotAlert
