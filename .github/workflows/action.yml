@@ -17,5 +17,7 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo ::set-env name=REPOSITORY_NAME::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}' | sed -e "s/:refs//")
+      - run: echo ::set-env name=REPOSITORY_OWNER::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $1}'")
+      - run: echo "$REPOSITORY_OWNER"
       - run: echo "$REPOSITORY_NAME"
       - run: echo "🍏 This job's status is ${{ job.status }}."
