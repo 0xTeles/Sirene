@@ -1,4 +1,6 @@
 import { getAlert } from "./helpers/get-alerts";
+import { getInput} from '@actions/core'
+import { context } from '@actions/github'
 import {Parser}  from "./helpers/parser"
 import {SendAlert} from "./helpers/discord"
 import { Env } from "./env";
@@ -7,9 +9,14 @@ import {Api} from "./api/api"
 
 if (Env.mode === "api"){
     Api()
-} else if (Env.mode === "discord"){
-    getAlert(Env.github_repository_owner, Env.github_repository_name).then((x) => {
+} else if (Env.mode === "cli"){
+    getAlert(Env.github_repository_owner, Env.github_repository_name, Env.github_token).then((x) => {
         const y: Array<any> = JSON.parse(x)
-        y.map(z => SendAlert(Parser(z)))
+        y.map(z => SendAlert(Parser(z), Env.webhook))
+    }).catch(console.error)
+} else if (Env.mode === "actions"){
+    getAlert(context.repo.owner, context.repo.repo, getInput("TOKEN")).then((x) => {
+        const y: Array<any> = JSON.parse(x)
+        y.map(z => SendAlert(Parser(z), getInput("WEBHOOK")))
     }).catch(console.error)
 }

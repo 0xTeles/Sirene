@@ -11,8 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAlert = void 0;
 const graphql_1 = require("@octokit/graphql");
-const env_1 = require("../env");
-const getAlert = (repo_owner, repo_name) => __awaiter(void 0, void 0, void 0, function* () {
+const getAlert = (repo_owner, repo_name, token) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
     const { repository } = yield (0, graphql_1.graphql)(`
   {
@@ -62,7 +61,7 @@ const getAlert = (repo_owner, repo_name) => __awaiter(void 0, void 0, void 0, fu
   }
   `, {
         headers: {
-            authorization: `token ${env_1.Env.github_token}`,
+            authorization: `token ${token}`,
         },
     });
     if (JSON.stringify((_a = repository.vulnerabilityAlerts) === null || _a === void 0 ? void 0 : _a.edges) !== "") {
