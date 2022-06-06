@@ -1,19 +1,11 @@
-name: 'Dependabot Alert'
-
-on:
-  schedule:
-    - cron: '0 */6 * * *'
-env:
-  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-  TOKEN:  ${{ secrets.TOKEN }}
-  WEBHOOK:  ${{ secrets.WEBHOOK }}
-
-jobs:
-  main:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo ::set-env name=REPOSITORY_NAME::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}' | sed -e "s/:refs//")
-      - run: echo ::set-env name=REPOSITORY_OWNER::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $1}')
-      - run: echo "$REPOSITORY_OWNER"
-      - run: echo "$REPOSITORY_NAME"
-      - uses: 0xteles/GetDependaBotAlert
+name: 'dependabot-discord'
+description: 'Send Dependabot alerts to Discord.'
+author: '@0xTeles'
+inputs:
+  TOKEN:
+    description: 'GitHub Personal Access Token'
+  WEBHOOK:
+    description: 'Discord Webhook URL'
+runs:
+  using: 'node16'
+  main: 'build/index.js'

@@ -2,7 +2,7 @@ import { graphql } from "@octokit/graphql";
 import { Repository } from "@octokit/graphql-schema";
 import { Env
  } from "../env";
-export const getAlert = async (repo_owner: string, repo_name: string): Promise<any> => {
+export const getAlert = async (repo_owner: any, repo_name: any): Promise<any> => {
   const { repository } = await graphql<{ repository: Repository }>(
   `
   {
