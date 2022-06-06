@@ -4,8 +4,13 @@ author: '@0xTeles'
 inputs:
   TOKEN:
     description: 'GitHub Personal Access Token'
+    required: true
   WEBHOOK:
     description: 'Discord Webhook URL'
+    required: true
 runs:
   using: 'node16'
   main: 'build/index.js'
+  env: 
+    TOKEN: ${{ inputs.TOKEN }}
+    WEBHOOK: ${{ inputs.WEBHOOK }}
