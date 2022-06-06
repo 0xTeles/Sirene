@@ -14,7 +14,7 @@ The discord can used by two forms, via CLI or via Github Actions. And the API, y
 To use "Sirene" with Github Actions, you need create a new workflow like this. However, is necessary add your discord webhook and your github access token to Github Actions Secrets.
 
 ```yaml
-name: 'Dependabot2Discord'
+name: 'Sirene'
 
 on: [push]
 
