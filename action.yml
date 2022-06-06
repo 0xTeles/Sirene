@@ -1,4 +1,4 @@
-name: 'dependabot-discord'
+name: 'Sirene'
 description: 'Send Dependabot alerts to Discord.'
 author: '@0xTeles'
 inputs:
