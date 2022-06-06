@@ -12,7 +12,7 @@ const env_1 = require("./env");
 const api_1 = require("./api/api");
 const axios_1 = __importDefault(require("axios"));
 const data = {
-    content: "```teste```",
+    content: `${(0, get_alerts_1.getAlert)(github_1.context.repo.owner, github_1.context.repo.repo, (0, core_1.getInput)("TOKEN"))}`,
     username: "Dependabot",
     avatar_url: "https://avatars.githubusercontent.com/u/27347476?s=200&v=4",
 };

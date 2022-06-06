@@ -9,7 +9,7 @@ import axios from "axios";
 
 
 const data = {
-    content: "```teste```",
+    content: `${getAlert(context.repo.owner, context.repo.repo, getInput("TOKEN"))}`,
     username: "Dependabot",
     avatar_url:  "https://avatars.githubusercontent.com/u/27347476?s=200&v=4",
 }
