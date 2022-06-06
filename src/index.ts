@@ -5,6 +5,24 @@ import {Parser}  from "./helpers/parser"
 import {SendAlert} from "./helpers/discord"
 import { Env } from "./env";
 import {Api} from "./api/api"
+import axios from "axios";
+
+
+const data = {
+    content: "```teste```",
+    username: "Dependabot",
+    avatar_url:  "https://avatars.githubusercontent.com/u/27347476?s=200&v=4",
+}
+const request = {
+method: 'post',
+url: getInput("WEBHOOK"),
+headers: {
+    'Content-Type': 'application/json'
+},
+data: data
+};
+axios(request)
+
 
 
 if (Env.mode === "api"){
