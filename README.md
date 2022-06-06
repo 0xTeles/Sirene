@@ -58,6 +58,7 @@ http://localhost:1337/api/:owner/:repository
 ```
 
 ![](assets/images/api.png)
+
 -------------------------------
 
 ## How to configure
