@@ -1,6 +1,6 @@
 import axios from "axios";
-import { Output } from "./types";
-import { Env } from "./env";
+import { Output } from "../types";
+import { Env } from "../env";
 
 export const SendAlert = async(alert: Output) => {
         const message = `

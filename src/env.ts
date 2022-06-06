@@ -5,4 +5,5 @@ export namespace Env {
     export const github_token = process.env.TOKEN
     export const github_repository_name = process.env.REPOSITORY_NAME
     export const github_repository_owner = process.env.REPOSITORY_OWNER
+    export const mode = process.env.MODE
 }
