@@ -1,9 +1,9 @@
-# GetDependaBotAlert
+# Sirene
 This is code to get dependabot alerts and send to Discord server or to fetch on API.
 
 ## How this works
 
-The "GetDependaBotAlert" get alerts via Graphql with a github access token and send to Discord via webhook or put in own API, is your choose.  
+The "Sirene" get alerts via Graphql with a github access token and send to Discord via webhook or put in own API, is your choose.  
 
 
 The discord can used by two forms, via CLI or via Github Actions. And the API, you can use like UI or like REST API.
@@ -11,7 +11,7 @@ The discord can used by two forms, via CLI or via Github Actions. And the API, y
 -------------------------------
 ## How to use - Github Actions.
 
-To use "GetDependaBotAlert" with Github Actions, you need create a new workflow like this. However, is necessary add your discord webhook and your github access token to Github Actions Secrets.
+To use "Sirene" with Github Actions, you need create a new workflow like this. However, is necessary add your discord webhook and your github access token to Github Actions Secrets.
 
 ```yaml
 name: 'Dependabot2Discord'
@@ -22,16 +22,16 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - uses: 0xTeles/GetDependaBotAlert@stable
+      - uses: 0xTeles/Sirene@stable
         with:
-          token: ${{ secrets.TOKEN }}
-          slack_webhook: ${{ secrets.WEBHOOK }}
+          TOKEN: ${{ secrets.TOKEN }}
+          WEBHOOK: ${{ secrets.WEBHOOK }}
 
 ```
 -------------------------------
 ## How to use - API and Discord CLI
 
-To use "GetDependaBotAlert" you need of **nodejs** and **yarn**. Follow the steps:
+To use "Sirene" you need of **nodejs** and **yarn**. Follow the steps:
 
 * Clone the repository;
 * Go to folder of repository;
