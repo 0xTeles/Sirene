@@ -8,22 +8,6 @@ import {Api} from "./api/api"
 import axios from "axios";
 
 
-const data = {
-    content: `${getAlert(context.repo.owner, context.repo.repo, getInput("TOKEN"))}`,
-    username: "Dependabot",
-    avatar_url:  "https://avatars.githubusercontent.com/u/27347476?s=200&v=4",
-}
-const request = {
-method: 'post',
-url: getInput("WEBHOOK"),
-headers: {
-    'Content-Type': 'application/json'
-},
-data: data
-};
-axios(request)
-
-
 
 if (Env.mode === "api"){
     Api()
@@ -32,7 +16,7 @@ if (Env.mode === "api"){
         const y: Array<any> = JSON.parse(x)
         y.map(z => SendAlert(Parser(z), Env.webhook))
     }).catch(console.error)
-} else if (Env.mode === "actions"){
+} else if (getInput("MODE") === "actions"){
     getAlert(context.repo.owner, context.repo.repo, getInput("TOKEN")).then((x) => {
         const y: Array<any> = JSON.parse(x)
         y.map(z => SendAlert(Parser(z), getInput("WEBHOOK")))
