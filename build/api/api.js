@@ -16,21 +16,15 @@ exports.Api = void 0;
 const express_1 = __importDefault(require("express"));
 const get_alerts_1 = require("../helpers/get-alerts");
 const parser_1 = require("../helpers/parser");
-const env_1 = require("../env");
 const app = (0, express_1.default)();
-const Api = () => {
+const Api = (_, __, token) => __awaiter(void 0, void 0, void 0, function* () {
     app.get("/api/:owner/:repo", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const alert = yield (0, get_alerts_1.getAlert)(req.params.owner, req.params.repo, env_1.Env.github_token);
-        const y = JSON.parse(alert);
-        const k = [];
-        y.forEach(element => {
-            k.push((0, parser_1.Parser)(element));
-        });
-        res.json(k);
+        const alerts = yield (0, get_alerts_1.getAlert)(req.params.owner, req.params.repo, token);
+        return res.json(alerts.map(element => (0, parser_1.Parser)(element)));
     }));
-    app.get("/", (req, res) => {
-        res.sendFile("index.html", { root: __dirname });
+    app.get("*", (req, res) => res.sendFile("index.html", { root: __dirname }));
+    app.listen(1337, () => {
+        console.log("Server up 🚀.");
     });
-    app.listen(1337);
-};
+});
 exports.Api = Api;

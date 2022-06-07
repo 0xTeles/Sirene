@@ -64,8 +64,6 @@ const getAlert = (repo_owner, repo_name, token) => __awaiter(void 0, void 0, voi
             authorization: `token ${token}`,
         },
     });
-    if (JSON.stringify((_a = repository.vulnerabilityAlerts) === null || _a === void 0 ? void 0 : _a.edges) !== "") {
-        return (JSON.stringify((_b = repository.vulnerabilityAlerts) === null || _b === void 0 ? void 0 : _b.edges));
-    }
+    return (_b = (_a = repository.vulnerabilityAlerts) === null || _a === void 0 ? void 0 : _a.edges) !== null && _b !== void 0 ? _b : [];
 });
 exports.getAlert = getAlert;

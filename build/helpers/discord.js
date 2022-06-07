@@ -29,19 +29,11 @@ const SendAlert = (alert, webhook) => __awaiter(void 0, void 0, void 0, function
         username: "Dependabot",
         avatar_url: "https://avatars.githubusercontent.com/u/27347476?s=200&v=4",
     };
-    const request = {
-        method: 'post',
-        url: webhook,
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        data: data
-    };
-    const Send = yield (0, axios_1.default)(request);
-    if (Send.status !== 204) {
-        return "ERROR";
+    try {
+        return axios_1.default.post(webhook, data);
     }
-    console.log("Ok");
-    return Send;
+    catch (error) {
+        throw error;
+    }
 });
 exports.SendAlert = SendAlert;

@@ -12,7 +12,7 @@ The discord can used by two forms, via CLI or via Github Actions. And the API, y
 -------------------------------
 ## How to use - Github Actions
 
-To use "Sirene" with Github Actions, you need create a new workflow like this. However, is necessary add your discord webhook, the mode (actions) and your github access token to Github Actions Secrets.
+To use "Sirene" with Github Actions, you need create a new workflow like this. However, is necessary add your discord webhook and your github access token to Github Actions Secrets.
 
 ```yaml
 name: 'Sirene'
@@ -27,7 +27,6 @@ jobs:
         with:
           TOKEN: ${{ secrets.TOKEN }}
           WEBHOOK: ${{ secrets.WEBHOOK }}
-          MODE: ${{ secrets.MODE }}
 
 ```
 -------------------------------
@@ -66,7 +65,6 @@ http://localhost:1337/api/:owner/:repository
 Before using, it is necessary to fill the **.ENV** file with your information. See:
 * WEBHOOK=Your discord webhook;
 * TOKEN=Your Github access token;
-* MODE=actions, cli or actions;
 * REPOSITORY_NAME=Name of repository to take alerts;
 * REPOSITORY_OWNER=Name of owner of repository to take alerts;
 -------------------------------
