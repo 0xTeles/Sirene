@@ -38,7 +38,7 @@ To use "Sirene" you need of **nodejs** and **yarn**. Follow the steps:
 * Go to folder of repository;
 * Execute:
   ```bash 
-  yarn && node build/index.js
+  yarn && node build/index.js <api or cli>
    ```
 
 If you selected CLI mode, as soon as you execute the command, you receive the alerts on your discord's channel. ***You only get alerts if the repository has one.***
