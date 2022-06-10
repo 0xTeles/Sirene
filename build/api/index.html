@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: #343d46;
+        }
+        
+        h1 {
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+            font-size: 100px;
+        }
+        
+        form {
+            text-align: center;
+        }
+        
+        table,
+        th,
+        td {
+            border: 1px solid;
+            font-family: sans-serif;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            color: white;
+        }
+    </style>
+    <script type="text/javascript">
+        function search(repo) {
+            const url = `http://localhost:1337/api/${repo}`
+
+            function reqListener() {
+                const response = JSON.parse(this.responseText)
+                var tbl = ""
+                response.forEach(element => {
+                    tbl += "<tr>"
+                    tbl += "<td>" + element.Repository + "</td>";
+                    tbl += "<td>" + element.Package + "</td>";
+                    tbl += "<td>" + element.Vulnerability + "</td>";
+                    tbl += "<td>" + element.Description + "</td>";
+                    tbl += "<td>" + element.Severity + "</td>";
+                    tbl += "<td>" + element.Vulnerable + "</td>";
+                    tbl += "<td>" + element.Patched + "</td>";
+                    tbl += "<td>" + element.Link + "</td></tr>";
+
+                });
+                document.getElementById('data').innerHTML = tbl;
+            };
+
+            var oReq = new XMLHttpRequest();
+            oReq.onload = reqListener;
+            oReq.open("get", url, true);
+            oReq.send();
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Sirene</h1>
+
+    <form name="repoSearch" action="javascript:search(repo.value)">
+        <input type="text" placeholder="owner/repository" name="repo" id="repo">
+        <input type="submit" name="Submit" value="Search">
+    </form>
+    <br></br>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Repository</th>
+                    <th>Package</th>
+                    <th>Vulnerability</th>
+                    <th>Description</th>
+                    <th>Severity</th>
+                    <th>Vulnerable</th>
+                    <th>Patched</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody id="data">
+
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
